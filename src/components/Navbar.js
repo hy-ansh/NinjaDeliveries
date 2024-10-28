@@ -2,43 +2,50 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
-    <nav
-      className="navbar navbar-expand-lg text-white bg-dark"
-      style={{ display: "flex", justifycontent: "space-evenly" }}
-    >
+    <nav className="navbar navbar-expand-lg text-white bg-dark">
       <div className="container-fluid">
-        <h4 className="navbar-brand text-white">Navbar</h4>
+        <h2 className="navbar-brand text-white mx-2">Navbar</h2>
+        <div style={{ display: "flex", justifycontent: "space-evenly" }}>
+          <div
+            className="collapse navbar-collapse text-white"
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item ">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link className="nav-link text-white" to="/businesslist">
+                  {" "}
+                  Business List
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/riderlist"
+                >
+                  Riders List{" "}
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/addtransaction"
+                >
+                  Add Transaction{" "}
+                </Link>
+              </li>
 
-        <div
-          className="collapse navbar-collapse text-white"
-          id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item ">
-              <Link
-                className="nav-link active text-white"
-                aria-current="page"
-                to="/"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item ">
-              <Link className="nav-link text-white" to="/businesslist">
-                {" "}
-                Business List
-              </Link>
-            </li>
-            <li className="nav-item ">
-              <Link
-                className="nav-link active text-white"
-                aria-current="page"
-                to="/riderlist"
-              >
-                Riders List{" "}
-              </Link>
-            </li>
-            {/* <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </Link>
@@ -49,7 +56,8 @@ export default function Navbar() {
             <li><Link className="dropdown-item" to="#">Something else here</Link></li>
           </ul>
         </li> */}
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

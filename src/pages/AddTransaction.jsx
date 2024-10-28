@@ -4,9 +4,9 @@ import firebase from "firebase/app";
 import {
   getFirestore,
   collection,
-  addDoc,
+  updateDoc,
   doc,
-  Timestamp,
+  getDoc,
   arrayUnion,
 } from "firebase/firestore";
 import { db } from "../context/Firebase";
@@ -16,38 +16,39 @@ export default function AddTransaction(value) {
 
   const [date, setDate] = useState(new Date());
 
-  const AddObjectToArray = () => {
-    const [objectToAdd, setObjectToAdd] = useState({
-      amount: parseFloat(amount),
-      mode: "UPI",
-      TimeStamp: date,
-    });
+  const [transaction, setTransaction] = useState({
+    amount: parseFloat(amount),
+    mode: "UPI",
+    timestamp: date,
+  });
 
-    const collectionName = "riderDetails";
-    const documentId = value.value.id;
+  const handleSubmit = async () => {
+    try {
+      const docRef = doc(db, "riderDetails", value.value.id);
+      const docSnap = await getDoc(docRef);
 
-    const addObjectToArray = async () => {
-      try {
-        await db
-          .collection(collectionName)
-          .doc(documentId)
-          .update({
-            objectsArray: firebase.firestore.FieldValue.arrayUnion(objectToAdd),
-          });
-        console.log("Object added successfully!");
-      } catch (error) {
-        console.error("Error adding object:", error);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const Transactions = data.Transactions || [];
+
+        Transactions.push(transaction);
+
+        await updateDoc(docRef, {
+          Transactions,
+        });
+
+        alert("Transaction Added");
+      } else {
+        console.log("Rider not found!");
       }
-    };
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      addObjectToArray();
-    };
+    } catch (error) {
+      console.error("Error adding transaction:", error);
+    }
   };
+
   return (
     <div key={value.value.id}>
-      <form className="row container my-5 g-3">
+      <form className="row container mx-5 my-5  g-3">
         <div className="col-md-12">
           <label htmlFor="validationDefault02" className="form-label"></label>
           <input
@@ -68,7 +69,9 @@ export default function AddTransaction(value) {
             className="form-control"
             id="validationDefault01"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) =>
+              setTransaction({ ...transaction, amount: e.target.valueAsNumber })
+            }
             required
           />
         </div>
@@ -101,7 +104,10 @@ export default function AddTransaction(value) {
         <div className="col-12">
           <button
             className="btn btn-primary"
-            onClick={handleSubmit()}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
             type="submit"
           >
             Submit form

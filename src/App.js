@@ -25,8 +25,7 @@ function App() {
         <Route path="/businesslist" element={<BusinessDataFetch />} />
         <Route path="/riderregistration" element={<RiderRegistration />} />
         <Route path="/riderlist" element={<RiderDataFetch />} />
-        <Route path="/h" element={<FetchAddTransaction />} />
-        <Route path="/b" element={<AddTransaction />} />
+        <Route path="/addtransaction" element={<FetchAddTransaction />} />
       </Routes>
     </>
   );

@@ -17,6 +17,9 @@ function RiderListUpdate({ item, setEditbox }) {
     setEdit(false);
     const docRef = doc(db, "riderDetails", item.id);
     await updateDoc(docRef, {
+      name: name,
+      username: username,
+      password: password,
       contactNumber: contact,
       inTime: inTime,
       outTime: outTime,

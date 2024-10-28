@@ -25,8 +25,9 @@ export default function RiderRegistration() {
       contactNumber: number,
       inTime: inTime,
       outTime: outTime,
-      outstandingAmount: osAmount,
+      outstandingAmount: parseFloat(osAmount),
       isAvailable: isAvailable,
+      ridesRejected: parseInt(0),
     });
   };
   return (

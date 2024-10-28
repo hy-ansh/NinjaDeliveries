@@ -11,23 +11,18 @@ export default function BusinessRegistration() {
   const [Number, setNumber] = useState("");
   const [In, setIn] = useState("");
   const [Out, setOut] = useState("");
-
+  const [isAvailable, setisAvailable] = useState(false);
   const InChange = (e) => {
     setIn(e.target.value);
   };
   const OutChange = (e) => {
     setOut(e.target.value);
   };
-  let isAvailable;
+
   const handleSelect = (e) => {
     setType(e.target.value);
   };
-  const Av = () => {
-    isAvailable = true;
-  };
-  const NotAv = () => {
-    isAvailable = false;
-  };
+
   const show = (e) => {
     e.preventDefault();
     console.log(Name);
@@ -128,30 +123,23 @@ export default function BusinessRegistration() {
           />
         </div>
 
-        <div className="form-check">
+        <div className="form-check form-switch mx-2">
           <input
             className="form-check-input"
-            type="radio"
-            onChange={Av}
-            name="exampleRadios"
-            id="exampleRadios1"
-            value="option1"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+            onChange={() => {
+              if (isAvailable === false) {
+                setisAvailable(true);
+              } else {
+                setisAvailable(false);
+              }
+            }}
+            checked={isAvailable === true}
           />
-          <label className="form-check-label" htmlFor="exampleRadios1">
+          <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
             Available
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="exampleRadios"
-            onChange={NotAv}
-            id="exampleRadios2"
-            value="option2"
-          />
-          <label className="form-check-label" htmlFor="exampleRadios2">
-            Not Available
           </label>
         </div>
         <div className="col-12">
