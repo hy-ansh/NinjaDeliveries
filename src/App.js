@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
+// import Riders from "./pages/Riders";
+import Home from "./pages/Home";
+import BusinessRegistration from "./pages/BusinessRegistration";
+
+import BusinessDataFetch from "./context/BusinessDataFetch";
+import RiderRegistration from "./pages/RiderRegistration";
+import RiderDataFetch from "./context/RiderDataFetch";
+import FetchAddTransaction from "./context/FetchAddTransaction";
+import AddTransaction from "./pages/AddTransaction";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/bussinessregistration"
+          element={<BusinessRegistration />}
+        />
+        <Route path="/businesslist" element={<BusinessDataFetch />} />
+        <Route path="/riderregistration" element={<RiderRegistration />} />
+        <Route path="/riderlist" element={<RiderDataFetch />} />
+        <Route path="/h" element={<FetchAddTransaction />} />
+        <Route path="/b" element={<AddTransaction />} />
+      </Routes>
+    </>
   );
 }
 
