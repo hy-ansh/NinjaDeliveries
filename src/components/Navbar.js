@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg text-white bg-dark">
       <div className="container-fluid">
-        <h2 className="navbar-brand text-white mx-2">Navbar</h2>
+        <h2 className="navbar-brand text-white mx-2">Ninja Deliveries</h2>
         <div style={{ display: "flex", justifycontent: "space-evenly" }}>
           <div
             className="collapse navbar-collapse text-white"
