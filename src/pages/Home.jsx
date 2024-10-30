@@ -13,10 +13,10 @@ export default function Home() {
           <div className="card-body">
             <h5 className="card-title">Register Business</h5>
             <p className="card-text">Click below to Register a new business </p>
-            <a href="./bussinessregistration" className="btn btn-primary">
+            <Link to="/bussinessregistration" className="btn btn-primary">
               {" "}
               Register Business{" "}
-            </a>
+            </Link>
           </div>
         </div>
         <div className="card p-3 col mx-5 mt-5" style={{ width: `18rem` }}>
@@ -28,10 +28,10 @@ export default function Home() {
           <div className="card-body">
             <h5 className="card-title">Register Riders</h5>
             <p className="card-text">Click below to Register a new Rider </p>
-            <a href="./riderregistration" className="btn btn-primary">
+            <Link to="/riderregistration" className="btn btn-primary">
               {" "}
               Register Rider{" "}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
